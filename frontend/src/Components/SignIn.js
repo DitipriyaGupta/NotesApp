@@ -18,6 +18,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
 import SaveAsIcon from '@mui/icons-material/SaveAs';
 import { useDispatch, useSelector } from "react-redux";
+import{login} from '../Redux/Action/userAction'
 // import { useHistory } from 'react-router-dom';
 import  Alert from '@mui/material/Alert';
 function Copyright(props) {
@@ -48,42 +49,43 @@ export default function SignIn() {
   // const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("")
+  // const [error, seterror] = useState("")
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { isAuthenticated,serverError, userInfo } = userLogin;
+  const { loading,error, userInfo } = userLogin;
 
   useEffect(() => {
     if (userInfo) {
       navigate("/Home");
     }
   }, [navigate, userInfo]);
-  useEffect(() => {
-    if(serverError === "Request failed with status code 404"){
-      setError("No account associated with this email");
-    }
+  // useEffect(() => {
+  //   if(servererror === "Request failed with status code 404"){
+  //     seterror("No account associated with this email");
+  //   }
 
-  }, [serverError])
-  useEffect(() => {
-    if(serverError === "Request failed with status code 401"){
-      setError("Invalid email or password");
-    }
+  // }, [servererror])
+  // useEffect(() => {
+  //   if(serverError === "Request failed with status code 401"){
+  //     setError("Invalid email or password");
+  //   }
 
-  }, [serverError])
+  // }, [serverError])
 
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if(email !== "" && password !== ""){
-      dispatch(userLogin(email, password));
-      if(isAuthenticated){
-        navigate("/Home")
-      }
-    }
-    else{
-      setError("Please Provide Your Credentials Properly!")
-    }
+    dispatch(login(email, password));
+    //  if(email !== "" && password !== ""){
+    //   dispatch(userLogin(email, password));
+      // if(isAuthenticated){
+      //   navigate("/Home")
+      // }
+    // }
+    // else{
+    //   setError("Please Provide Your Credentials Properly!")
+    // }
 
   };
   
@@ -175,12 +177,26 @@ export default function SignIn() {
               >
                 Sign In
               </Button>
-            
-                <Link sx={{textDecoration:"none",textAlign:"center",ml:10,color:"black "}} to onClick={() => navigate("/")}>
-               {"Don't have an account? Sign Up"}
-            </Link>
+              {/* <Typography component="h5" sx={{ml:8}}> Don't have an account?
+                <Link sx={{textdecoration:"none",color:"green"}} to onClick={() => navigate("/")}>
+                Sign Up
+            </Link></Typography>
+              */}
+
                
               {/* <Copyright sx={{ mt: 5 }} /> */}
+
+              <Grid container sx={{ml:7}}>
+               
+               <Grid item xs >
+               Don't have an account?
+               </Grid>
+               <Grid item xs>
+                 <Link  href="#" variant="body2">
+                  Sign Up
+                 </Link>
+               </Grid>
+             </Grid>
             </Box>
           </Box>
         </Grid>

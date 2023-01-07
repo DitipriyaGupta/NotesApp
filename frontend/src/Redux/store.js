@@ -5,20 +5,28 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 import { userLoginReducer, userRegisterReducer} from "./Reducer/userReducer";
+import { noteListReducer,noteCreateReducer,noteUpdateReducer} from "./Reducer/noteReducer";
+
+
 // import  Notes  from "./reducers/NotesReducer";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
-  userRegister: userRegisterReducer
+  userRegister: userRegisterReducer,
+  noteList: noteListReducer,
+  noteCreate: noteCreateReducer,
+  noteUpdate:noteUpdateReducer
   // userNotes: Notes,
 });
 
 
 //GET user info from localstorage
-// const userInfoFromLocalstorage = JSON.parse(localStorage.getItem("userInfo"));
+const userInfoFromStorage = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo"))
+  : null;
 
 const initialState = {
-  userLogin: b 
+  userLogin: { userInfo: userInfoFromStorage },
 };
 
 const middleware = [thunk];

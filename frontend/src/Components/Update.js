@@ -10,31 +10,40 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
 import  { useEffect, useState } from "react";
-import { createNoteAction } from "../Redux/Action/noteAction";
-export default function Newcard() {
+import { updateNoteAction } from "../Redux/Action/noteAction";
+import axios from "axios";
+import { useParams } from "react-router";
+
+export default function Update() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   
   const dispatch = useDispatch();
 const navigate=useNavigate();
-  const noteCreate = useSelector((state) => state.noteCreate);
-  const { loading, error, note } = noteCreate;
+// const noteUpdate = useSelector((state) => state.noteUpdate);
 
-  console.log(note);
+const {id} = useParams() ;
 
-  // const resetHandler = () => {
-  //   setTitle("");
-  
-  //   setContent("");
-  // };
+useEffect(() => {
+    const fetching = async () => {
+      const { data } = await axios.get(`http://localhost:5000/api/notes/${id}`);
+
+      setTitle(data.title);
+      setContent(data.content);
+     
+    };
+
+    fetching();
+  }, [id]);
+
   const submitHandler = (e) => {
     e.preventDefault();
     navigate("/Home");
-    dispatch(createNoteAction(title, content));
+    dispatch(updateNoteAction(id,title, content));
     
   };
 
-  useEffect(() => {}, []);
+//   useEffect(() => {}, []);
 
 
   const theme = createTheme({

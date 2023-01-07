@@ -152,10 +152,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import login from "./login.PNG";
 import { useNavigate } from "react-router-dom";
 
-import {userRegister} from '../Redux/Action/userAction'
+// import {userRegister} from '../Redux/Action/userAction'
 import { useDispatch, useSelector } from "react-redux";
 import  Alert from '@mui/material/Alert';
 import SaveAsIcon from '@mui/icons-material/SaveAs';
+import{register} from '../Redux/Action/userAction'
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -179,56 +180,58 @@ function Copyright(props) {
   });
 
 
-export default function SignIn({history}) {
+export default function SignUp() {
   const navigate = useNavigate();
   
 
-const [username , setUsername] = useState("");
+const [name , setName] = useState("");
 const [email , setEmail] = useState("");
 const [password , setPassword] = useState("");
-const [error, setError] = useState("")
+// const [error, setError] = useState("")
 
 
 //redux
 const  dispatch = useDispatch();
-const {userInfo } = useSelector((state) => state.userLogin);
-const {serverError} = useSelector((state) => state.userRegister)
+
+const userRegister = useSelector((state) => state.userRegister);
+const { loading,error,userInfo } = userRegister;
 //Redirect to Homepage if loggedin
-useEffect((navigate) =>{
+useEffect(() =>{
   if(userInfo){
     navigate("/Home");
   }
 }, [navigate,userInfo]);
 
   //serverside validation
-  useEffect(() =>{
-    if(serverError !== null){
-      setError("User with this email address already exist!")
-    }if(serverError === true){
-      navigate("/Home")
-    }
-  }, [serverError,navigate])
+  // useEffect(() =>{
+  //   if(serverError !== null){
+  //     setError("User with this email address already exist!")
+  //   }if(serverError === true){
+  //     navigate("/Home")
+  //   }
+  // }, [serverError,navigate])
 
 
 const submitHandler = (event) => {
   event.preventDefault();
-  if (username && email && password) {
-    if(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)){
-      if(password.match(/^[A-Za-z]\w{8,14}$/)){
-        dispatch(userRegister(username , email , password));
-      }
-      else{
-        setError("password must be between 8 to 16 characters which contain only characters, numeric digits, underscore and first character must be a letter")
-      }
+  dispatch(register(name , email , password));
+  // if (name && email && password) {
+  //   if(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)){
+  //     if(password.match(/^[A-Za-z]\w{8,14}$/)){
+  //       dispatch(register(name , email , password));
+  //     }
+  //     else{
+  //       setError("password must be between 8 to 16 characters which contain only characters, numeric digits, underscore and first character must be a letter")
+  //     }
 
-    }
-    else{
-      setError("This is not the right email")
-    }
+  //   }
+  //   else{
+  //     setError("This is not the right email")
+  //   }
 
-  } else {
-    setError("Please fill all the fields")
-  }  
+  // } else {
+  //   setError("Please fill all the fields")
+  // }  
 
 };
   
@@ -298,7 +301,7 @@ const submitHandler = (event) => {
                   id="Name"
                   label="Name"
                   autoFocus
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) => setName(e.target.value)}
                 />
               
               

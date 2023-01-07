@@ -12,7 +12,7 @@ const NavBar = () => {
             </Typography>
          <ul >
        <li><Link to='Home'>Home</Link></li> 
-        <li><Link to='New'>New</Link></li>
+        <li><Link to='NewCard'>New</Link></li>
        
         <li><Link to='New'>About us</Link></li>
         <li><Link to='New'>Contact us</Link></li>

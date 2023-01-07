@@ -13,7 +13,7 @@ import {
 import axios from 'axios';
 
 // user register action
-export const userRegister = (username, email, password) => async (dispatch) => {
+export const register = (username, email, password) => async (dispatch) => {
   try {
     dispatch({
       type: USER_REGISTER_REQUEST,
@@ -22,9 +22,9 @@ export const userRegister = (username, email, password) => async (dispatch) => {
     const config = {
       "Content-Type": "application/json",
     };
-    const baseUrl="https://mydiary-backend-host.herokuapp.com";
+    const baseUrl="http://localhost:5000";
     const { data } = await axios.post(
-          baseUrl+"/users/signup",
+         baseUrl+ "/api/users",
             { email, password, username },
       config
     );
@@ -35,7 +35,7 @@ export const userRegister = (username, email, password) => async (dispatch) => {
       payload: data,
     });
 
-   // localStorage.setItem("userInfo", JSON.stringify(data));
+   localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAILED,
@@ -45,29 +45,29 @@ export const userRegister = (username, email, password) => async (dispatch) => {
 };
 
 //user Login action
-export const userLogin = (email, password) => async (dispatch, getState) => {
+export const login = (email, password) => async (dispatch, getState) => {
   try {
     dispatch({
       type: USER_LOGIN_REQUEST,
     });
 
-    // const config = {
-    //   "Content-Type": "application/json",
-    // };
-    // const baseUrl="https://mydiary-backend-host.herokuapp.com";
+    const config = {
+      "Content-Type": "application/json",
+    };
+    const baseUrl="http://localhost:5000";
     const { data } = await axios.post(
-      // baseUrl+"/users/login",
+    baseUrl+ "/api/users/SignIn",
             { email, password },
-      // config
+      config
     );
-    console.log(data);
+   
 
     dispatch({
       type: USER_LOGIN_SUCCESS,
       payload: data,
     });
 
-    // localStorage.setItem("userInfo", JSON.stringify(data));
+    localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAILED,
@@ -77,10 +77,10 @@ export const userLogin = (email, password) => async (dispatch, getState) => {
 };
 
 // logout action
-// export const userLogout = () => (dispatch) => {
-//   localStorage.removeItem("userInfo");
-//   dispatch({
-//     type: USER_LOGOUT,
-//   });
-// };
-export default userLogin;
+export const userLogout = () => (dispatch) => {
+  localStorage.removeItem("userInfo");
+  dispatch({
+    type: USER_LOGOUT,
+  });
+};
+// module.exports= {login,register};
