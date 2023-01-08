@@ -77,8 +77,9 @@ export const login = (email, password) => async (dispatch, getState) => {
 };
 
 // logout action
-export const userLogout = () => (dispatch) => {
+export const logout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
+  
   dispatch({
     type: USER_LOGOUT,
   });

@@ -17,19 +17,19 @@ function App() {
   return (
 <>
 
-<NavBar/>
 
+<NavBar/>
     <Routes>
-   
-        <Route path="/Home" element={<Home />} />
+   {/* <Route element={<NavBar/>}><Route path="/Home" element={<Home />} /> */}
+   <Route path="/Home" element={<Home />} />
         <Route path="/NewCard" element={<NewCard />} />
         <Route path="/note/:id" element={<Update />} />
-       
+        
+        
+        
         {/* <Route path="/Newcard" element={<Newcard />} /> */}
        
-      </Routes>
       
- <Routes>
          <Route path="/" element={<SignUp />} />
         <Route path="/SignIn" element={<SignIn />} />
       </Routes>

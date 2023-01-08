@@ -2,7 +2,24 @@ import React from 'react'
 import {Link } from "react-router-dom";
 import Typography from '@mui/material/Typography';
 import SaveAsIcon from '@mui/icons-material/SaveAs';
+import { logout } from "../Redux/Action/userAction";
+import { useDispatch, useSelector } from "react-redux";
+import  { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 const NavBar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    navigate("/SignIn")
+  };
+
+  useEffect(() => {},
+   [userInfo]);
+  
   return (
     <nav className='nav'>
       
@@ -19,7 +36,7 @@ const NavBar = () => {
        
       </ul>
       {/* <li><Link to='New'>Logout</Link></li> */}
-     <button>LOGOUT</button>
+     <button onClick={logoutHandler}>LOGOUT</button>
     </nav>
     
    
