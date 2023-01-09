@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
 import  { useEffect, useState } from "react";
-import { updateNoteAction } from "../Redux/Action/noteAction";
+import { updateNoteAction,getNoteIdAction } from "../Redux/Action/noteAction";
 import axios from "axios";
 import { useParams } from "react-router";
 
@@ -20,13 +20,19 @@ export default function Update() {
   
   const dispatch = useDispatch();
 const navigate=useNavigate();
-// const noteUpdate = useSelector((state) => state.noteUpdate);
-
+const noteUpdate = useSelector((state) => state.noteUpdate);
+const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 const {id} = useParams() ;
-
-useEffect(() => {
+// const { note, error } = useSelector((state) => state.noteList);
+  useEffect(() => {
+const config = {
+    headers: {
+      Authorization: `Bearer ${userInfo.token}`,
+    },
+  };
     const fetching = async () => {
-      const { data } = await axios.get(`http://localhost:5000/api/notes/${id}`);
+      const { data } = await axios.get(`http://localhost:5000/api/notes/${id}`,config);
 
       setTitle(data.title);
       setContent(data.content);
@@ -34,16 +40,30 @@ useEffect(() => {
     };
 
     fetching();
-  }, [id]);
+  }, [id,userInfo.token]);
 
+  // useEffect(() => {
+  //   dispatch(getNoteIdAction(id));
+  // },[id,dispatch]);
+  
+
+
+  
+
+  
+ 
+  
   const submitHandler = (e) => {
     e.preventDefault();
+   
+    dispatch(updateNoteAction(title, content));
     navigate("/Home");
-    dispatch(updateNoteAction(id,title, content));
     
   };
 
-//   useEffect(() => {}, []);
+  useEffect(() => {}, [noteUpdate]);
+ 
+
 
 
   const theme = createTheme({
@@ -54,11 +74,8 @@ useEffect(() => {
     },
   });
   return (
-
-      
-        
+ 
      <> 
-     
          <ThemeProvider theme={theme}>
         
         <Typography variant="h3"
@@ -68,7 +85,7 @@ useEffect(() => {
           height: 100,width: 400,ml:10,mt:5}}
         label="Title"
         color="primary"
-       
+        value={title}
         onChange={(e) => setTitle(e.target.value)}
          />
          <br />

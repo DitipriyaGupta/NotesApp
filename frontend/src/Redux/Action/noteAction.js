@@ -11,6 +11,10 @@ import {
     NOTES_UPDATE_FAIL,
     NOTES_UPDATE_REQUEST,
     NOTES_UPDATE_SUCCESS,
+    NOTES_GETNOTEID_FAIL,
+    NOTES_GETNOTEID_REQUEST,
+    NOTES_GETNOTEID_SUCCESS,
+    
   } from "../Constant/noteConstant";
   import axios from "axios";
  
@@ -88,6 +92,40 @@ import {
       });
     }
   };
+  // export const getNoteIdAction = (id) => async (dispatch, getState) => {
+  //   try {
+  //     dispatch({
+  //       type: NOTES_GETNOTEID_REQUEST,
+  //     });
+  
+  //     const {
+  //       userLogin: { userInfo },
+  //     } = getState();
+  
+  //     const config = {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${userInfo.token}`,
+  //       },
+  //     };
+  //      const { data } = await axios.get(`http://localhost:5000/api/notes/${id}`, config);
+  //      dispatch({
+  //       type: NOTES_GETNOTEID_SUCCESS,
+  //       payload: data,
+  //     });
+      
+    
+  //   } catch (error) {
+  //     const message =
+  //     error.response && error.response.data.message
+  //       ? error.response.data.message
+  //       : error.message;
+  //     dispatch({
+  //       type: NOTES_GETNOTEID_FAIL,
+  //       payload: message,
+  //     });
+  //   }
+  // };
   export const updateNoteAction = (id, title, content) => async (
     dispatch,
     getState
@@ -129,3 +167,37 @@ import {
       });
     }
   };
+  export const deleteNoteAction = (id) => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: NOTES_DELETE_REQUEST,
+      });
+  
+      const {
+        userLogin: { userInfo },
+      } = getState();
+  
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+  
+      const { data } = await axios.delete(`http://localhost:5000/api/notes/${id}`, config);
+  
+      dispatch({
+        type: NOTES_DELETE_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+      dispatch({
+        type: NOTES_DELETE_FAIL,
+        payload: message,
+      });
+    }
+  };
+  

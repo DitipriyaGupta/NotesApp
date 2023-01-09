@@ -11,6 +11,9 @@ import {
     NOTES_LIST_FAIL,
     NOTES_LIST_REQUEST,
     NOTES_LIST_SUCCESS,
+    NOTES_GETNOTEID_REQUEST ,
+ NOTES_GETNOTEID_SUCCESS ,
+  NOTES_GETNOTEID_FAIL ,
   } from "../Constant/noteConstant";
 export const noteListReducer = (state = { notes: [] }, action) => {
     switch (action.type) {
@@ -38,6 +41,20 @@ export const noteListReducer = (state = { notes: [] }, action) => {
         return state;
     }
   };
+      
+  //     export const getNoteIdReducer  = (state = {}, action) => {
+  //   switch (action.type) {
+  //     case NOTES_GETNOTEID_REQUEST:
+  //       return { loading: true };
+  //     case NOTES_GETNOTEID_SUCCESS:
+  //       return { loading: false, success: true };
+  //     case NOTES_GETNOTEID_FAIL:
+  //       return { loading: false, error: action.payload, success: false };
+  //       default:
+  //       return state;
+  //   }
+  // };
+  
   export const noteUpdateReducer = (state = {}, action) => {
     switch (action.type) {
       case NOTES_UPDATE_REQUEST:
@@ -45,6 +62,19 @@ export const noteListReducer = (state = { notes: [] }, action) => {
       case NOTES_UPDATE_SUCCESS:
         return { loading: false, success: true };
       case NOTES_UPDATE_FAIL:
+        return { loading: false, error: action.payload, success: false };
+  
+      default:
+        return state;
+    }
+  };
+  export const noteDeleteReducer = (state = {}, action) => {
+    switch (action.type) {
+      case NOTES_DELETE_REQUEST:
+        return { loading: true };
+      case NOTES_DELETE_SUCCESS:
+        return { loading: false, success: true };
+      case NOTES_DELETE_FAIL:
         return { loading: false, error: action.payload, success: false };
   
       default:

@@ -6,6 +6,7 @@ import { logout } from "../Redux/Action/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import  { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import SignIn from './SignIn';
 const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,15 +29,19 @@ const NavBar = () => {
             <SaveAsIcon sx={{color:'#4caf50',fontSize:'4vh'}}/>Notez  
             </Typography>
          <ul >
-       <li><Link to='Home'>Home</Link></li> 
+          {userInfo?
+          <> <li><Link to='Home'>Home</Link></li> 
         <li><Link to='NewCard'>New</Link></li>
        
         <li><Link to='New'>About us</Link></li>
         <li><Link to='New'>Contact us</Link></li>
+        <button onClick={logoutHandler}>LOGOUT</button>
+        </>
+         :<li><Link to='New'>About us</Link></li>}
        
       </ul>
       {/* <li><Link to='New'>Logout</Link></li> */}
-     <button onClick={logoutHandler}>LOGOUT</button>
+    
     </nav>
     
    

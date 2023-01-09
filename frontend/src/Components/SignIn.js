@@ -49,11 +49,11 @@ export default function SignIn() {
   // const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [error, seterror] = useState("")
+  const [error, seterror] = useState("")
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { loading,error, userInfo } = userLogin;
+  const {  userInfo } = userLogin;
 
   useEffect(() => {
     if (userInfo) {
@@ -76,16 +76,16 @@ export default function SignIn() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
-    //  if(email !== "" && password !== ""){
-    //   dispatch(userLogin(email, password));
+    // dispatch(login(email, password));
+     if(email !== "" && password !== ""){
+      dispatch(login(email, password));
       // if(isAuthenticated){
       //   navigate("/Home")
       // }
-    // }
-    // else{
-    //   setError("Please Provide Your Credentials Properly!")
-    // }
+    }
+    else{
+      seterror("Please Provide Your Credentials Properly!")
+    }
 
   };
   
@@ -177,14 +177,7 @@ export default function SignIn() {
               >
                 Sign In
               </Button>
-              {/* <Typography component="h5" sx={{ml:8}}> Don't have an account?
-                <Link sx={{textdecoration:"none",color:"green"}} to onClick={() => navigate("/")}>
-                Sign Up
-            </Link></Typography>
-              */}
-
-               
-              {/* <Copyright sx={{ mt: 5 }} /> */}
+           
 
               <Grid container sx={{ml:7}}>
                
@@ -192,7 +185,7 @@ export default function SignIn() {
                Don't have an account?
                </Grid>
                <Grid item xs>
-                 <Link  href="#" variant="body2">
+                 <Link  sx={{textdecoration:"none",color:"#4caf50"}} to onClick={() => navigate("/")}>
                   Sign Up
                  </Link>
                </Grid>

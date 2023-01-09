@@ -187,15 +187,13 @@ export default function SignUp() {
 const [name , setName] = useState("");
 const [email , setEmail] = useState("");
 const [password , setPassword] = useState("");
-// const [error, setError] = useState("")
+const [error, seterror] = useState("")
 
-
-//redux
 const  dispatch = useDispatch();
 
 const userRegister = useSelector((state) => state.userRegister);
-const { loading,error,userInfo } = userRegister;
-//Redirect to Homepage if loggedin
+const { userInfo } = userRegister;
+
 useEffect(() =>{
   if(userInfo){
     navigate("/Home");
@@ -214,12 +212,13 @@ useEffect(() =>{
 
 const submitHandler = (event) => {
   event.preventDefault();
-  dispatch(register(name , email , password));
-  // if (name && email && password) {
+  
+  if (name && email && password) {
+    dispatch(register(name , email , password));
   //   if(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)){
   //     if(password.match(/^[A-Za-z]\w{8,14}$/)){
   //       dispatch(register(name , email , password));
-  //     }
+      }
   //     else{
   //       setError("password must be between 8 to 16 characters which contain only characters, numeric digits, underscore and first character must be a letter")
   //     }
@@ -229,9 +228,9 @@ const submitHandler = (event) => {
   //     setError("This is not the right email")
   //   }
 
-  // } else {
-  //   setError("Please fill all the fields")
-  // }  
+   else {
+    seterror("Please fill all the fields")
+  }  
 
 };
   
@@ -353,9 +352,17 @@ const submitHandler = (event) => {
                 Sign Up
               </Button>
             
-                <Link sx={{textDecoration:"none",textAlign:"center",ml:10,color:"black "}} onClick={() => navigate("/SignIn")}>
-               {"Have an account? SignIn"}
-            </Link>
+              <Grid container sx={{ml:7}}>
+               
+               <Grid item xs >
+               Have an account?
+               </Grid>
+               <Grid item xs>
+                 <Link  sx={{textdecoration:"none",color:"#4caf50"}} to onClick={() => navigate("/SignIn")}>
+                  Sign In
+                 </Link>
+               </Grid>
+             </Grid>
                
               {/* <Copyright sx={{ mt: 5 }} /> */}
             </Box>

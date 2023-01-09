@@ -5,7 +5,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 import { userLoginReducer, userRegisterReducer} from "./Reducer/userReducer";
-import { noteListReducer,noteCreateReducer,noteUpdateReducer} from "./Reducer/noteReducer";
+import { noteListReducer,noteCreateReducer,noteUpdateReducer, getNoteIdReducer, noteDeleteReducer} from "./Reducer/noteReducer";
 
 
 // import  Notes  from "./reducers/NotesReducer";
@@ -15,7 +15,9 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   noteList: noteListReducer,
   noteCreate: noteCreateReducer,
-  noteUpdate:noteUpdateReducer
+  // getNoteId:getNoteIdReducer,
+  noteUpdate:noteUpdateReducer,
+  noteDelete:noteDeleteReducer
   // userNotes: Notes,
 });
 

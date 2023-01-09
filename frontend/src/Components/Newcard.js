@@ -22,11 +22,7 @@ const navigate=useNavigate();
 
   console.log(note);
 
-  // const resetHandler = () => {
-  //   setTitle("");
   
-  //   setContent("");
-  // };
   const submitHandler = (e) => {
     e.preventDefault();
     navigate("/Home");
