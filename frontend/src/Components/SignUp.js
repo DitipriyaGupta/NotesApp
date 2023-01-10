@@ -238,7 +238,7 @@ const submitHandler = (event) => {
   return (
     <ThemeProvider theme={theme}>
        {error ? <Alert severity="error">{error}</Alert>:""}
-      <Grid container component="main" sx={{ width: '150vh',height:'20vh',mt:'5vh',ml:'40vh'}}>
+      <Grid container component="main" sx={{ width: '150vh',height:'30vh',ml:'40vh'}}>
         <CssBaseline />
         <Grid
           item
@@ -302,10 +302,6 @@ const submitHandler = (event) => {
                   autoFocus
                   onChange={(e) => setName(e.target.value)}
                 />
-              
-              
-             
-            
               <TextField sx={{mt:3}}
                 margin="normal"
                 required
@@ -328,7 +324,7 @@ const submitHandler = (event) => {
                 autoComplete="current-password"
                 onChange={(e) => setPassword(e.target.value)}
               />
-               <Grid container>
+               {/* <Grid container>
                
                 <Grid item xs>
                 <FormControlLabel
@@ -341,7 +337,7 @@ const submitHandler = (event) => {
                    Forgot password?
                   </Link>
                 </Grid>
-              </Grid>
+              </Grid> */}
              
               <Button
                 type="submit"
@@ -352,12 +348,12 @@ const submitHandler = (event) => {
                 Sign Up
               </Button>
             
-              <Grid container sx={{ml:7}}>
+              <Grid container sx={{ml:13}}>
                
                <Grid item xs >
                Have an account?
                </Grid>
-               <Grid item xs>
+               <Grid item xs sx={{mr:15}}>
                  <Link  sx={{textdecoration:"none",color:"#4caf50"}} to onClick={() => navigate("/SignIn")}>
                   Sign In
                  </Link>

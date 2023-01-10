@@ -13,7 +13,7 @@ const getNotes = asyncHandler(async (req, res) => {
       res.status(404).json({ message: "Note not found" });
     }
   
-    res.json(note);
+    // res.json(note);
   });
   const createNote = asyncHandler(async (req, res) => {
     const { title, content } = req.body;
@@ -41,10 +41,10 @@ const getNotes = asyncHandler(async (req, res) => {
   //   }
   
   
-  //   if (note.user.toString() !== req.user.id) {
-  //     res.status(401);
-  //     throw new Error("User not authorized");
-  //   }
+    // if (note.user.toString() !== req.user.id) {
+    //   res.status(401);
+    //   throw new Error("User not authorized");
+    // }
   //   res.status(200).json(note);
   // });
 
@@ -53,14 +53,15 @@ const getNotes = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const note = await Note.findById(req.params.id);
   
-    if (note.user.toString() !== req.user._id.toString()) {
-      res.status(401);
-      throw new Error("You can't perform this action");
-    }
+    // if (note.user.toString() !== req.user._id.toString()) {
+    //   res.status(401);
+    //   throw new Error("You can't perform this action");
+    // }
   
     if (note) {
       note.title = title;
       note.content = content;
+      // note.user=id;
      
   
       const updatedNote = await note.save();

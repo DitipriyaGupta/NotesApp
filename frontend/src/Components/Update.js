@@ -22,7 +22,7 @@ export default function Update() {
 const navigate=useNavigate();
 const noteUpdate = useSelector((state) => state.noteUpdate);
 const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const { userInfo} = userLogin;
 const {id} = useParams() ;
 // const { note, error } = useSelector((state) => state.noteList);
   useEffect(() => {
@@ -42,29 +42,17 @@ const config = {
     fetching();
   }, [id,userInfo.token]);
 
-  // useEffect(() => {
-  //   dispatch(getNoteIdAction(id));
-  // },[id,dispatch]);
-  
-
-
-  
-
-  
- 
   
   const submitHandler = (e) => {
     e.preventDefault();
    
-    dispatch(updateNoteAction(title, content));
+    dispatch(updateNoteAction(id,title,content));
     navigate("/Home");
     
   };
 
-  useEffect(() => {}, [noteUpdate]);
+  // useEffect(() => {}, [noteUpdate]);
  
-
-
 
   const theme = createTheme({
     palette: {
@@ -82,7 +70,7 @@ const config = {
       align="center">
     </Typography><br /><TextField
         sx={{
-          height: 100,width: 400,ml:10,mt:5}}
+          height: 100,width: 700,ml:50,mt:5}}
         label="Title"
         color="primary"
         value={title}
@@ -91,8 +79,8 @@ const config = {
          <br />
         <TextField
         sx={{
-          width: 400,
-          ml:10
+          width: 700,
+          ml:50
         }}
         label="Write your Note here....."
         multiline
@@ -105,10 +93,10 @@ const config = {
           sx={{
             background: "rgb(84, 187, 87)",
             color: "white",
-            padding: "1rem 2rem",
+            padding: "1rem 3rem",
             marginTop: "1rem",
             borderRadius: "1rem",
-            fontWeight:"600",mt:"2rem",marginLeft:"10rem"
+            fontWeight:"600",mt:"2rem",marginLeft:"42rem"
           }}>
         Save
       </Button>

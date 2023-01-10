@@ -92,7 +92,7 @@ export default function SignIn() {
   return (
     <ThemeProvider theme={theme}>
       {error ? <Alert severity="error">{error}</Alert>:""}
-      <Grid container component="main" sx={{ width: '150vh',height:'80vh',mt:'10vh',ml:'40vh'}}>
+      <Grid container component="main" sx={{ width: '150vh',height:'70vh',mt:'5vh',ml:'40vh'}}>
         <CssBaseline />
         <Grid
           item
@@ -161,11 +161,11 @@ export default function SignIn() {
                 label="Remember me"
               />
                 </Grid>
-                <Grid item xs>
+                {/* <Grid item xs>
                   <Link sx={{ml:7,mt:10}} href="#" variant="body2">
                    Forgot password?
                   </Link>
-                </Grid>
+                </Grid> */}
               </Grid>
              
               <Button

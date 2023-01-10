@@ -33,11 +33,12 @@ const NavBar = () => {
           <> <li><Link to='Home'>Home</Link></li> 
         <li><Link to='NewCard'>New</Link></li>
        
-        <li><Link to='New'>About us</Link></li>
-        <li><Link to='New'>Contact us</Link></li>
+        <li><Link to='Aboutus'>About us</Link></li>
+        <li><Link to='Contactus'>Contact us</Link></li>
         <button onClick={logoutHandler}>LOGOUT</button>
         </>
-         :<li><Link to='New'>About us</Link></li>}
+         :<><li><Link to='Aboutus'>About us</Link></li>
+         <li><Link to='Contactus'>Contact us</Link></li></>}
        
       </ul>
       {/* <li><Link to='New'>Logout</Link></li> */}

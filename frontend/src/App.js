@@ -11,6 +11,8 @@ import NavBar from "./Components/NavBar"
 import Home from "./Components/Home";
 import NewCard from './Components/Newcard'
 import Update from './Components/Update'
+import Aboutus from "./Components/Aboutus";
+import Contactus from "./Components/Contactus";
 
 function App() {
   
@@ -23,6 +25,8 @@ function App() {
    {/* <Route element={<NavBar/>}><Route path="/Home" element={<Home />} /> */}
    <Route path="/Home" element={<Home />} />
         <Route path="/NewCard" element={<NewCard />} />
+        <Route path="/Aboutus" element={<Aboutus />} />
+        <Route path="/Contactus" element={<Contactus />} />
         <Route path="/note/:id" element={<Update />} />
         
         

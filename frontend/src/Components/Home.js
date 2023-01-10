@@ -59,7 +59,7 @@ justifyContent="center"
          </Typography>
        </CardContent>
        <CardActions >
-        <Link underline="none" to={`/note/${note._id}`}>
+        <Link underline='none' to={`/note/${note._id}`}>
   <Button  sx={{color:"green",ml:"20rem"}} size="big">Edit</Button>
         </Link>
        
