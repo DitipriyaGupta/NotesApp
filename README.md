@@ -20,3 +20,10 @@ A personal notes taking app.
 ![image](https://user-images.githubusercontent.com/120082922/211567626-ce3db2c4-652a-4337-9532-4d88e15fc67f.png)
 ![image](https://user-images.githubusercontent.com/120082922/211567954-17093abb-f3b1-4189-abea-4faf82abc626.png)
 
+## Tech Stack
+- NodeJs
+- ExpressJs
+- MongoDb
+- React
+- Redux
+- MUI
