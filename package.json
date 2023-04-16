@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon backend/index.js",
-  
+    "start": "node index.js",
+    "server": "nodemon index.js",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm start\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build -- prefix client"
+  
   },
   "author": "",
   "license": "ISC",
