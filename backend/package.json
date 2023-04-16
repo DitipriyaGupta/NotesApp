@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node backend/index",
-    "server": "nodemon backend/index",
-    "client":"npm start --prefix frontend",
-    "dev":"concurrently \"npm start\" \"npm run client\""
+    "start": "node backend/index.js",
+    "server": "nodemon backend/index.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm start\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +20,6 @@
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.2",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.22"
   }
 }
