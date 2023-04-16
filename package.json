@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node backend/index",
+    "server": "nodemon backend/index",
+    "client":"npm start --prefix frontend",
+    "dev":"concurrently \"npm start\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",

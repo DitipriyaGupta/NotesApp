@@ -3,23 +3,30 @@ const dotenv =require( "dotenv");
 const  userRoutes =require("./routes/userRoutes.js");
 const  noteRoutes =require("./routes/noteRoutes.js");
 const connectDB= require("./Config/db.js");
-// const { errorHandler, notFound } =require("./middleware/errorMiddleware.js") ;
 const cors= require("cors");
 const bodyParser = require("body-parser");
 const app=express();
-dotenv.config();
+const path = require("path");
+
+dotenv.config({path:'.env'});
 app.use(cors())
 connectDB();
-app.use(express.json());
-// app.use(notFound);
-// app.use(errorHandler);
-
-app.get("/",(req,res)=>{
-    res.send("API");
-})
+app.use(express.json());app.use(bodyParser.json());
 app.use("/api/users", userRoutes);
 app.use("/api/notes", noteRoutes);
-app.use(bodyParser.json());
+
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/frontend/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running..");
+  });
+}
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
