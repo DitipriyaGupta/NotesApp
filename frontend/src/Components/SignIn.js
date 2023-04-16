@@ -11,31 +11,18 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { green } from '@mui/material/colors';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import login from "./login.PNG";
+import { createTheme, ThemeProvider, useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import SaveAsIcon from '@mui/icons-material/SaveAs';
 import { useDispatch, useSelector } from "react-redux";
-import{login} from '../Redux/Action/userAction'
-// import { useHistory } from 'react-router-dom';
+import{userLogin} from '../Redux/Action/userAction'
 import  Alert from '@mui/material/Alert';
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Container from '@mui/material/Container';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 
-  const theme = createTheme({
+  const theme2 = createTheme({
     palette: {
       primary: {
         main: green[500],
@@ -44,73 +31,65 @@ function Copyright(props) {
   });
 
 
-export default function SignIn() {
+ function SignIn() {
   const navigate = useNavigate();
-  // const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, seterror] = useState("")
+  const[error,setError]=useState("")
   const dispatch = useDispatch();
-
-  const userLogin = useSelector((state) => state.userLogin);
-  const {  userInfo } = userLogin;
-
+  const theme = useTheme();
+  const isMobile = 
+  useMediaQuery(theme.breakpoints.up('md'));
+  const {userInfo,serverError} = useSelector((state) => state.userLogin);
   useEffect(() => {
     if (userInfo) {
       navigate("/Home");
     }
   }, [navigate, userInfo]);
-  // useEffect(() => {
-  //   if(servererror === "Request failed with status code 404"){
-  //     seterror("No account associated with this email");
-  //   }
 
-  // }, [servererror])
-  // useEffect(() => {
-  //   if(serverError === "Request failed with status code 401"){
-  //     setError("Invalid email or password");
-  //   }
+  useEffect(() => {
+    if(serverError === "Request failed with status code 401"){
+      setError("Invalid email or password");
+    }
 
-  // }, [serverError])
-
+  }, [serverError])
 
   const submitHandler = (e) => {
-    e.preventDefault();
-    // dispatch(login(email, password));
-     if(email !== "" && password !== ""){
-      dispatch(login(email, password));
-      // if(isAuthenticated){
-      //   navigate("/Home")
-      // }
+    e.preventDefault(); 
+   if(email !== "" && password !== ""){
+     dispatch(userLogin(email, password));
     }
     else{
-      seterror("Please Provide Your Credentials Properly!")
+      setError("Please fill all the fields")
     }
-
   };
   
+  
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme2}>
       {error ? <Alert severity="error">{error}</Alert>:""}
-      <Grid container component="main" sx={{ width: '150vh',height:'70vh',mt:'5vh',ml:'40vh'}}>
+ 
+{
+  isMobile?
+    <Grid container component="main" sx={{ width: '150vh',height:'70vh',mt:'12vh',ml:'38vh'}}>
         <CssBaseline />
         <Grid
           item
-               xs={false}
+          xs={false}
           sm={4}
           md={6}
           sx={{
-           
+        
             backgroundImage: 'url(https://lirp.cdn-website.com/3d7ac03c/dms3rep/multi/opt/In+the+office-amico-1920w.png)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            boxShadow:'5'
+            boxShadow:'3'
           }}
         />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid item sx={{boxShadow:"2"}}xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
             sx={{
               my: 8,
@@ -121,9 +100,12 @@ export default function SignIn() {
              
             }}
           >
-            <Typography sx={{fontSize:'3vh'}} component="h1" variant="h5">
-            <SaveAsIcon sx={{color:'#4caf50',fontSize:'4vh'}}/>Notez  
-            </Typography>
+            <Container sx={{display:"flex",ml:15}}> <SaveAsIcon sx={{color:'#4caf50',fontSize:'4vh'}}/>    
+      <Typography sx={{fontSize:'3.5vh',color:"black"
+   }}component="h1" variant="h5" >
+            Notez  
+            </Typography></Container>
+ 
           
             <Typography component="h1" variant="h5" sx={{mt:5,ml:2,color:'#4caf50'}}>
               Welcome Back !
@@ -140,6 +122,7 @@ export default function SignIn() {
                 autoComplete="email"
                 autoFocus
                 onChange={(e) => setEmail(e.target.value)}
+                
               />
               <TextField
                 margin="normal"
@@ -153,21 +136,6 @@ export default function SignIn() {
                 onChange={(e) => setPassword(e.target.value)}
             
               />
-               <Grid container>
-               
-                <Grid item xs>
-                <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-                </Grid>
-                {/* <Grid item xs>
-                  <Link sx={{ml:7,mt:10}} href="#" variant="body2">
-                   Forgot password?
-                  </Link>
-                </Grid> */}
-              </Grid>
-             
               <Button
                 type="submit"
                 fullWidth
@@ -179,13 +147,13 @@ export default function SignIn() {
               </Button>
            
 
-              <Grid container sx={{ml:7}}>
+              <Grid container sx={{ml:9}}>
                
                <Grid item xs >
                Don't have an account?
                </Grid>
-               <Grid item xs>
-                 <Link  sx={{textdecoration:"none",color:"#4caf50"}} to onClick={() => navigate("/")}>
+               <Grid item xs sx={{mr:5}}>
+                 <Link  sx={{textDecoration:"none",color:"#4caf50"}} to onClick={() => navigate("/")}>
                   Sign Up
                  </Link>
                </Grid>
@@ -194,6 +162,82 @@ export default function SignIn() {
           </Box>
         </Grid>
       </Grid>
+  :<>
+       <Grid item  xs={10} sm={10} md={5} component={Paper} elevation={6} square sx={{boxShadow:"0",mr:4}}>
+          <Box
+            sx={{
+              my: 10,
+              mx: 3,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+             
+            }}
+          > <Grid sx={{display:"flex",mt:2}}><SaveAsIcon sx={{color:'#4caf50',fontSize:'4vh'}}/>  
+            <Typography sx={{fontSize:'3vh'}} component="h1" variant="h5">Notez
+           
+            </Typography>
+          </Grid>
+          
+            <Typography component="h1" variant="h5" sx={{mt:5,ml:2,color:'#4caf50'}}>
+              Welcome Back !
+            </Typography>
+            
+            <Box component="form" noValidate onSubmit={submitHandler} sx={{ mt: 1 }}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                color="primary"
+                autoFocus
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                onChange={(e) => setPassword(e.target.value)}
+            
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 ,color:"white"}}
+                onClick={submitHandler}
+              >
+                Sign In
+              </Button>
+           
+
+              <Grid container sx={{mt:4,ml:5}}>
+               
+               <Grid item md={10}>
+               Don't have an account?
+               </Grid>
+               <Grid item sx={{ml:1}}>
+                 <Link  sx={{textDecoration:"none",color:"#4caf50"}} to onClick={() => navigate("/")}>
+                  Sign Up
+                 </Link>
+               </Grid>
+             </Grid>
+            </Box>
+          </Box>
+        </Grid>
+  
+  </>
+}
+      
     </ThemeProvider>
   );
 }
+export default SignIn;

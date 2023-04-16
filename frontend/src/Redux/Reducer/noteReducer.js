@@ -41,20 +41,6 @@ export const noteListReducer = (state = { notes: [] }, action) => {
         return state;
     }
   };
-      
-  //     export const getNoteIdReducer  = (state = {}, action) => {
-  //   switch (action.type) {
-  //     case NOTES_GETNOTEID_REQUEST:
-  //       return { loading: true };
-  //     case NOTES_GETNOTEID_SUCCESS:
-  //       return { loading: false, success: true };
-  //     case NOTES_GETNOTEID_FAIL:
-  //       return { loading: false, error: action.payload, success: false };
-  //       default:
-  //       return state;
-  //   }
-  // };
-  
   export const noteUpdateReducer = (state = {}, action) => {
     switch (action.type) {
       case NOTES_UPDATE_REQUEST:

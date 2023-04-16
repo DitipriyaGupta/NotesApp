@@ -1,9 +1,12 @@
 import  Typography  from '@mui/material/Typography'
 import React from 'react'
+import NavBar from './NavBar'
 
 const Aboutus = () => {
   return (
-    <>  <Typography component="h1" variant="h3" sx={{textAlign:"center",color:'#4caf50',mt:"3rem"}}>
+    <>
+ 
+    <Typography component="h1" variant="h3" sx={{textAlign:"center",color:'#4caf50',mt:"3rem"}}>
     About Us
   </Typography>
   <Typography component="h4" variant="h8" sx={{textAlign:"center",color:"rgba(0, 0, 0, 0.6)", letterSpacing: ".1rem",mt:"3rem"}}>

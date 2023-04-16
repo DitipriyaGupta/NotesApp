@@ -15,28 +15,22 @@ import {
       switch(action.type){
           case USER_LOGIN_REQUEST:
               return{
-                  loading: true,
-                  // isAuthenticated: false,
-                  // serverError: null,
-                  // userInfo: null,
+                serverError:null,
+                 userInfo:null
               };
 
             case USER_LOGIN_SUCCESS: 
                 return{
-                    loading: false,
+                  serverError:null,
                     userInfo: action.payload,
-                    // isAuthenticated: true,
-                    // serverError: null,
                 };
             
             case USER_LOGIN_FAILED: 
                 return{
-                    // isAuthenticated: false,
-                    error:action.payload
+                    serverError:action.payload
                 };
             case USER_LOGOUT:
               return{
-                // isAuthenticated:false,
               };    
                 
             default:
@@ -50,7 +44,6 @@ import {
   export const userRegisterReducer = (
       state = {
           loading: false,
-          // serverError: null,
           userInfo: null,
       },
       action
@@ -58,21 +51,22 @@ import {
       switch (action.type){
         case USER_REGISTER_REQUEST:
             return {
-              loading: true,
-              // serverError: null,
+             userInfo:null,
+             serverError:null,
+
             };
       
           case USER_REGISTER_SUCCESS:
             return {
-              loading: false,
               userInfo: action.payload,
-              // serverError: true,
+              serverError:null,
+
             };
       
           case USER_REGISTER_FAILED:
             return {
-              loading: false,
-              serverError: action.payload,
+              serverError:action.payload
+             
             };
       
           default:

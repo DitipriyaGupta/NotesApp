@@ -13,7 +13,7 @@ import {
 import axios from 'axios';
 
 // user register action
-export const register = (username, email, password) => async (dispatch) => {
+export const userRegister = (username, email, password) => async (dispatch) => {
   try {
     dispatch({
       type: USER_REGISTER_REQUEST,
@@ -28,7 +28,7 @@ export const register = (username, email, password) => async (dispatch) => {
             { email, password, username },
       config
     );
-    // console.log(data);
+  
 
     dispatch({
       type: USER_REGISTER_SUCCESS,
@@ -45,7 +45,7 @@ export const register = (username, email, password) => async (dispatch) => {
 };
 
 //user Login action
-export const login = (email, password) => async (dispatch, getState) => {
+export const userLogin = (email, password) => async (dispatch, getState) => {
   try {
     dispatch({
       type: USER_LOGIN_REQUEST,
@@ -84,4 +84,3 @@ export const logout = () => (dispatch) => {
     type: USER_LOGOUT,
   });
 };
-// module.exports= {login,register};

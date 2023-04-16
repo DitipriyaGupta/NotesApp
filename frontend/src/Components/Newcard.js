@@ -1,17 +1,18 @@
 import * as React from 'react';
-import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from '@mui/material/Box'
-import NavBar from "./NavBar"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { green } from '@mui/material/colors';
 import { useDispatch, useSelector } from "react-redux";
-
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 import { useNavigate } from "react-router-dom";
 import  { useEffect, useState } from "react";
 import { createNoteAction } from "../Redux/Action/noteAction";
 import { Alert } from '@mui/material';
+import 'react-toastify/dist/ReactToastify.css';
+  
 export default function Newcard() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -19,18 +20,15 @@ export default function Newcard() {
   const dispatch = useDispatch();
 const navigate=useNavigate();
   const noteCreate = useSelector((state) => state.noteCreate);
-  const { loading, error, note } = noteCreate;
+  const { error} = noteCreate;
 
-  console.log(note);
-
-  
   const submitHandler = (e) => {
     e.preventDefault();
   
     dispatch(createNoteAction(title, content));
     navigate("/Home");
   };
-
+ 
   useEffect(() => {}, []);
 
 
@@ -42,53 +40,68 @@ const navigate=useNavigate();
     },
   });
   return (
-
-      
         
      <> 
-     
+    
          <ThemeProvider theme={theme}>
          {error ? <Alert severity="error">{error}</Alert>:""}
-        <Typography variant="h3"
-      align="center">
-    </Typography><br /><TextField
-        sx={{
-          height: 100,width: 700,ml:50,mt:5}}
-        label="Title"
+      <Grid item  xs={10} sm={10} md={5} component={Paper} elevation={6} square sx={{boxShadow:"0",mr:4}}>
+          <Box
+            sx={{
+              my: 10,
+              mx: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+             
+            }}
+          > 
+
+            
+            <Box component="form" noValidate onSubmit={submitHandler} sx={{ mt: 1 }}>
+            <TextField
+         margin="normal"
+                  name="Title"
+                  required
+                  fullWidth
+                  id="Title"
+                  label="Title"
+                  autoFocus
         color="primary"
        
         onChange={(e) => setTitle(e.target.value)}
          />
-         <br />
-        <TextField
-        sx={{
-          width: 700,
-          ml:50
-        }}
-        label="Write your Note here....."
+           
+               <TextField sx={{mt:2}}
+        fullWidth
+        label="Write your note here...."
         multiline
-        rows={10}
+        rows={8}
         rowsMax={9}
         variant="outlined"
       value={content}
         onChange={(e) => setContent(e.target.value)}
-        /><br /><Button onClick={submitHandler}
-          sx={{
-            background: "rgb(84, 187, 87)",
-            color: "white",
-            padding: "1rem 3rem",
-            marginTop: "1rem",
-            borderRadius: "1rem",
-            fontWeight:"600",mt:"2rem",marginLeft:"42rem"
-          }}>
-        Save
-      </Button>
-      {/* <Button className="mx-2"  variant="danger">
-            Update
-            </Button> */}
+        />
+             
+             
+              <Button onClick={submitHandler}
+                type="submit"
+                
+                variant="contained"
+                sx={{ mt: 3, mb: 2 ,color:"white"}}
+              
+              >
+                Save
+              </Button>
+           
+
+            
+            </Box>
+          </Box>
+        </Grid>
+        
       </ThemeProvider>
      </>
   );
 }
 
-// export default NewNote;

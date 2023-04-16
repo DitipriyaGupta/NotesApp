@@ -7,7 +7,6 @@ import NavBar from "./NavBar"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { green } from '@mui/material/colors';
 import { useDispatch, useSelector } from "react-redux";
-
 import { useNavigate } from "react-router-dom";
 import  { useEffect, useState } from "react";
 import { updateNoteAction,getNoteIdAction } from "../Redux/Action/noteAction";
@@ -17,14 +16,12 @@ import { useParams } from "react-router";
 export default function Update() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  
   const dispatch = useDispatch();
 const navigate=useNavigate();
 const noteUpdate = useSelector((state) => state.noteUpdate);
 const userLogin = useSelector((state) => state.userLogin);
   const { userInfo} = userLogin;
 const {id} = useParams() ;
-// const { note, error } = useSelector((state) => state.noteList);
   useEffect(() => {
 const config = {
     headers: {
@@ -33,12 +30,9 @@ const config = {
   };
     const fetching = async () => {
       const { data } = await axios.get(`http://localhost:5000/api/notes/${id}`,config);
-
       setTitle(data.title);
       setContent(data.content);
-     
     };
-
     fetching();
   }, [id,userInfo.token]);
 
@@ -49,10 +43,7 @@ const config = {
     dispatch(updateNoteAction(id,title,content));
     navigate("/Home");
     
-  };
-
-  // useEffect(() => {}, [noteUpdate]);
- 
+  }; 
 
   const theme = createTheme({
     palette: {
@@ -65,7 +56,6 @@ const config = {
  
      <> 
          <ThemeProvider theme={theme}>
-        
         <Typography variant="h3"
       align="center">
     </Typography><br /><TextField
@@ -100,12 +90,7 @@ const config = {
           }}>
         Save
       </Button>
-      {/* <Button className="mx-2"  variant="danger">
-            Update
-            </Button> */}
       </ThemeProvider>
      </>
   );
 }
-
-// export default NewNote;
