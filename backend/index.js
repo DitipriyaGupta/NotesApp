@@ -10,7 +10,9 @@ const path = require("path");
 
 dotenv.config({path:'.env'});
 app.use(cors({
-  origin: "https://slug-panel.onrender.com"
+  origin: "https://slug-panel.onrender.com",
+  headers: ["Content-Type"],
+  credentials: true,
 }))
 app.options('*', cors())
 connectDB();
