@@ -18,11 +18,10 @@ function App() {
 
   return (
 <>
-{
-  userInfo?<NavBar/>:null
-}
-
+{userInfo?<NavBar/>:null}
  <Routes>
+     
+ 
       <Route path="/Home" element={<Home />} />
  <Route path="/NewCard" element={<NewCard />} />
         <Route path="/Aboutus" element={<Aboutus />} />

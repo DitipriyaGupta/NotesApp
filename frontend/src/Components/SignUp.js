@@ -4,8 +4,6 @@ import  { useState, useEffect } from "react";
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -40,7 +38,10 @@ const  dispatch = useDispatch();
 const theme = useTheme();
   const isMobile = 
   useMediaQuery(theme.breakpoints.up('md'));
-const  { userInfo,serverError }= useSelector((state) => state.userRegister);
+
+  const {userInfo,serverError} = useSelector((state) => state.userRegister)
+ 
+
 
 useEffect(() =>{
   if(userInfo){
@@ -48,12 +49,13 @@ useEffect(() =>{
   }
 }, [navigate,userInfo]);
 
-  useEffect(() =>{
-    if(serverError === "Request failed with status code 404"){
-      setError("User already exists");
-    }
-  }, [serverError])
+useEffect(() =>{
+  if(serverError === "Request failed with status code 404"){
+    setError("User already exists");
+  }
+}, [serverError])
 
+ 
 
 const submitHandler = (event) => {
   event.preventDefault();

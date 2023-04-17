@@ -11,18 +11,16 @@ import {
     NOTES_LIST_FAIL,
     NOTES_LIST_REQUEST,
     NOTES_LIST_SUCCESS,
-    NOTES_GETNOTEID_REQUEST ,
- NOTES_GETNOTEID_SUCCESS ,
-  NOTES_GETNOTEID_FAIL ,
+    
   } from "../Constant/noteConstant";
 export const noteListReducer = (state = { notes: [] }, action) => {
     switch (action.type) {
       case NOTES_LIST_REQUEST:
-        return { loading: true };
+        return {  };
       case NOTES_LIST_SUCCESS:
-        return { loading: false, notes: action.payload };
+        return {  notes: action.payload };
       case NOTES_LIST_FAIL:
-        return { loading: false, error: action.payload };
+        return {  error: action.payload };
   
       default:
         return state;
@@ -31,11 +29,11 @@ export const noteListReducer = (state = { notes: [] }, action) => {
   export const noteCreateReducer = (state = {}, action) => {
     switch (action.type) {
       case NOTES_CREATE_REQUEST:
-        return { loading: true };
+        return { };
       case NOTES_CREATE_SUCCESS:
-        return { loading: false, success: true };
+        return { success: true };
       case NOTES_CREATE_FAIL:
-        return { loading: false, error: action.payload };
+        return { error: action.payload };
   
       default:
         return state;
@@ -44,11 +42,11 @@ export const noteListReducer = (state = { notes: [] }, action) => {
   export const noteUpdateReducer = (state = {}, action) => {
     switch (action.type) {
       case NOTES_UPDATE_REQUEST:
-        return { loading: true };
+        return { };
       case NOTES_UPDATE_SUCCESS:
-        return { loading: false, success: true };
+        return {  success: true };
       case NOTES_UPDATE_FAIL:
-        return { loading: false, error: action.payload, success: false };
+        return {  error: action.payload, success: false };
   
       default:
         return state;
@@ -57,11 +55,11 @@ export const noteListReducer = (state = { notes: [] }, action) => {
   export const noteDeleteReducer = (state = {}, action) => {
     switch (action.type) {
       case NOTES_DELETE_REQUEST:
-        return { loading: true };
+        return { };
       case NOTES_DELETE_SUCCESS:
-        return { loading: false, success: true };
+        return {  success: true };
       case NOTES_DELETE_FAIL:
-        return { loading: false, error: action.payload, success: false };
+        return {  error: action.payload, success: false };
   
       default:
         return state;

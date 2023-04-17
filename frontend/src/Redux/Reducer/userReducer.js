@@ -42,10 +42,7 @@ import {
 
   //User Register Reducer
   export const userRegisterReducer = (
-      state = {
-          loading: false,
-          userInfo: null,
-      },
+      state = {userInfo:null,serverError:null},
       action
   ) => {
       switch (action.type){

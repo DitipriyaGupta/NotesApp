@@ -11,6 +11,7 @@ import { noteListReducer,noteCreateReducer,noteUpdateReducer, getNoteIdReducer, 
 // import  Notes  from "./reducers/NotesReducer";
 
 const reducer = combineReducers({
+  noteList: noteListReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   noteList: noteListReducer,

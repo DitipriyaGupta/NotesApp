@@ -9,7 +9,7 @@ import { green } from '@mui/material/colors';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import  { useEffect, useState } from "react";
-import { updateNoteAction,getNoteIdAction } from "../Redux/Action/noteAction";
+import { updateNoteAction} from "../Redux/Action/noteAction";
 import axios from "axios";
 import { useParams } from "react-router";
 
@@ -18,9 +18,11 @@ export default function Update() {
   const [content, setContent] = useState("");
   const dispatch = useDispatch();
 const navigate=useNavigate();
-const noteUpdate = useSelector((state) => state.noteUpdate);
-const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo} = userLogin;
+
+const userLogin = useSelector((state) => state.userLogin); 
+const { userInfo} = userLogin;
+const {error} = useSelector((state) => state.noteUpdate);
+ 
 const {id} = useParams() ;
   useEffect(() => {
 const config = {
@@ -34,7 +36,7 @@ const config = {
       setContent(data.content);
     };
     fetching();
-  }, [id,userInfo.token]);
+  }, [id,userInfo.token,error]);
 
   
   const submitHandler = (e) => {

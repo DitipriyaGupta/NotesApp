@@ -2,35 +2,23 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import NavBar from "./NavBar"
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Grid from "@mui/material/Grid";
 import { Link, useNavigate } from "react-router-dom";
-import { red } from '@mui/material/colors';
 import { useDispatch, useSelector } from "react-redux";
 import { listNotes,deleteNoteAction } from "../Redux/Action/noteAction.js";
 import  { useEffect } from "react";
-import { styled } from '@mui/material/styles';
-import {green, blue } from '@mui/material/colors';
-import { useTheme } from '@mui/material';
-import useMediaQuery from '@mui/material/useMediaQuery';
-
 import Container from '@mui/material/Container';
 export default function Home()  {
   const navigate = useNavigate();
   const dispatch = useDispatch();
  
-
-  const noteList = useSelector((state) => state.noteList);
-  const {  error, notes } = noteList;
-  const noteDelete = useSelector((state) => state.noteDelete);
-  const{error:errorDelete,success:successDelete}=noteDelete
-  const noteUpdate = useSelector((state) => state.noteUpdate);
-  const{error:errorUpdate,success:successUpdate}=noteUpdate
+  const{error, notes } =useSelector((state) => state.noteList);
+  const{error:errorDelete,success:successDelete}=useSelector((state) => state.noteDelete);
+  const{error:errorUpdate,success:successUpdate}=useSelector((state) => state.noteUpdate);
   useEffect(() => {
     dispatch(listNotes());
-    },[dispatch,successDelete,successUpdate]);
+    },[dispatch,successDelete,successUpdate,errorDelete,errorUpdate]);
     const deleteHandler = (id) => {
       if (window.confirm("Are you sure?")) {
         dispatch(deleteNoteAction(id));
