@@ -9,7 +9,10 @@ const app=express();
 const path = require("path");
 
 dotenv.config({path:'.env'});
-app.use(cors())
+app.use(cors({
+  origin: "https://slug-panel.onrender.com"
+}))
+app.options('*', cors())
 connectDB();
 app.use(express.json());app.use(bodyParser.json());
 app.use("/api/users", userRoutes);
