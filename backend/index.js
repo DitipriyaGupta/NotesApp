@@ -19,10 +19,10 @@ connectDB();
 app.use(express.json());app.use(bodyParser.json());
 app.use("/api/users", userRoutes);
 app.use("/api/notes", noteRoutes);
-const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, "/frontend/build")));
+const __name = path.resolve();
+app.use(express.static(path.join(__name, "/frontend/build")));
 app.get("*", (req, res) =>
-  res.sendFile(path.join(__dirname, "/frontend/build/index.html"))
+  res.sendFile(path.join(__name, "/frontend/build/index.html"))
 );
 
 const PORT = process.env.PORT || 5000;
