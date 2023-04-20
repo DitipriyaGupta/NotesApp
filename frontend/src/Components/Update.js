@@ -78,6 +78,7 @@ const config = {
                   fullWidth
                   id="Title"
                   label="Title"
+                  value={title}
                   autoFocus
         color="primary"
        
