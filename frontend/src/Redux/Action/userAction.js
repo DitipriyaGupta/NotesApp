@@ -22,14 +22,13 @@ export const userRegister = (username, email, password) => async (dispatch) => {
     const config = {
       "Content-Type": "application/json",
     };
-    const baseUrl="http://localhost:5000";
+    const baseUrl="https://localhost:5000";
     const { data } = await axios.post(
          baseUrl+ "/api/users",
             { email, password, username },
       config
     );
   
-
     dispatch({
       type: USER_REGISTER_SUCCESS,
       payload: data,
@@ -54,14 +53,13 @@ export const userLogin = (email, password) => async (dispatch, getState) => {
     const config = {
       "Content-Type": "application/json",
     };
-    const baseUrl="http://localhost:5000";
+    const baseUrl="https://localhost:5000";
     const { data } = await axios.post(
     baseUrl+ "/api/users/SignIn",
             { email, password },
       config
     );
    
-
     dispatch({
       type: USER_LOGIN_SUCCESS,
       payload: data,
