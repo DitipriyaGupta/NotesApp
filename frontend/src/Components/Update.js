@@ -3,7 +3,8 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from '@mui/material/Box'
-import NavBar from "./NavBar"
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { green } from '@mui/material/colors';
 import { useDispatch, useSelector } from "react-redux";
