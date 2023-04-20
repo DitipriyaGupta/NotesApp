@@ -81,9 +81,7 @@ const navigate=useNavigate();
         variant="outlined"
       value={content}
         onChange={(e) => setContent(e.target.value)}
-        />
-             
-             
+        />  
               <Button onClick={submitHandler}
                 type="submit"
                 

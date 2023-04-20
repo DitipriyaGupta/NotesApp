@@ -31,7 +31,7 @@ const config = {
     },
   };
     const fetching = async () => {
-      const { data } = await axios.get(`http://localhost:5000/api/notes/${id}`,config);
+      const { data } = await axios.get(`/api/notes/${id}`,config);
       setTitle(data.title);
       setContent(data.content);
     };
@@ -58,7 +58,57 @@ const config = {
  
      <> 
          <ThemeProvider theme={theme}>
-        <Typography variant="h3"
+      <Grid item  xs={10} sm={10} md={5} component={Paper} elevation={6} square sx={{boxShadow:"0",mr:4}}>
+          <Box
+            sx={{
+              my: 10,
+              mx: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+             
+            }}
+          > 
+            <Box component="form" noValidate onSubmit={submitHandler} sx={{ mt: 1 }}>
+            <TextField
+         margin="normal"
+                  name="Title"
+                  required
+                  fullWidth
+                  id="Title"
+                  label="Title"
+                  autoFocus
+        color="primary"
+       
+        onChange={(e) => setTitle(e.target.value)}
+         />
+           
+               <TextField sx={{mt:2}}
+        fullWidth
+        label="Write your note here...."
+        multiline
+        rows={8}
+        rowsMax={9}
+        variant="outlined"
+      value={content}
+        onChange={(e) => setContent(e.target.value)}
+        />
+             
+             
+              <Button onClick={submitHandler}
+                type="submit"
+                
+                variant="contained"
+                sx={{ mt: 3, mb: 2 ,color:"white"}}
+              
+              >
+                Save
+              </Button>
+            </Box>
+          </Box>
+        </Grid>
+        
+        {/* <Typography variant="h3"
       align="center">
     </Typography><br /><TextField
         sx={{
@@ -91,7 +141,7 @@ const config = {
             fontWeight:"600",mt:"2rem",marginLeft:"42rem"
           }}>
         Save
-      </Button>
+      </Button> */}
       </ThemeProvider>
      </>
   );
