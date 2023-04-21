@@ -42,7 +42,6 @@ const config = {
   
   const submitHandler = (e) => {
     e.preventDefault();
-   
     dispatch(updateNoteAction(id,title,content));
     navigate("/Home");
     

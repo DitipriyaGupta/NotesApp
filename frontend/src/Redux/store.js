@@ -5,21 +5,15 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 import { userLoginReducer, userRegisterReducer} from "./Reducer/userReducer";
-import { noteListReducer,noteCreateReducer,noteUpdateReducer, getNoteIdReducer, noteDeleteReducer} from "./Reducer/noteReducer";
-
-
-// import  Notes  from "./reducers/NotesReducer";
+import { noteListReducer,noteCreateReducer,noteUpdateReducer, noteDeleteReducer} from "./Reducer/noteReducer";
 
 const reducer = combineReducers({
   noteList: noteListReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
-  noteList: noteListReducer,
   noteCreate: noteCreateReducer,
-  // getNoteId:getNoteIdReducer,
   noteUpdate:noteUpdateReducer,
   noteDelete:noteDeleteReducer
-  // userNotes: Notes,
 });
 
 

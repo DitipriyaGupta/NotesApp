@@ -20,7 +20,7 @@ export default function Newcard() {
   const dispatch = useDispatch();
 const navigate=useNavigate();
   const noteCreate = useSelector((state) => state.noteCreate);
-  const { error} = noteCreate;
+  const { error,success} = noteCreate;
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -29,7 +29,9 @@ const navigate=useNavigate();
     navigate("/Home");
   };
  
-  useEffect(() => {}, []);
+  useEffect(() => {
+    
+  }, []);
 
 
   const theme = createTheme({
