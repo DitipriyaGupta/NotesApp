@@ -33,7 +33,7 @@ import {
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-  
+      // const baseUrl="http://localhost:5000";
       const { data } = await axios.get(`/api/notes` ,config);
   
       dispatch({
@@ -70,9 +70,9 @@ import {
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-  
+      // const baseUrl="http://localhost:5000";
       const { data } = await axios.post(
-        `/api/notes/create`,
+      `/api/notes/create`,
         { title, content},
         config
       );
@@ -112,9 +112,9 @@ import {
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-  
+      // const baseUrl="http://localhost:5000";
       const { data } = await axios.put(
-        `/api/notes/${id}`,
+    `/api/notes/${id}`,
         { title, content },
         config
       );
@@ -149,7 +149,7 @@ import {
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-  
+      // const baseUrl="http://localhost:5000";
       const { data } = await axios.delete(`/api/notes/${id}`, config);
   
       dispatch({

@@ -12,12 +12,20 @@ import Update from './Components/Update'
 import Aboutus from "./Components/Aboutus";
 import Contactus from "./Components/Contactus";
 import {  useSelector } from "react-redux";
+import { createTheme, ThemeProvider  ,useTheme} from '@mui/material/styles';
+const theme = createTheme({
+  typography: {
+    fontFamily: [
+      'Plus Jakarta Sans',
+      'sans-serif',
+    ].join(','),
+  },});
 function App() {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
   return (
-<>
+<ThemeProvider theme={theme}>
 {userInfo?<NavBar/>:null}
  <Routes>
      
@@ -32,7 +40,8 @@ function App() {
         <Route path="/SignIn" element={<SignIn />} />
       
          
-      </Routes></>
+      </Routes>
+      </ThemeProvider>
    
       
   );
