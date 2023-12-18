@@ -16,16 +16,6 @@ const reducer = combineReducers({
   noteDelete:noteDeleteReducer
 });
 
-
-//GET user info from localstorage
-const userInfoFromStorage = localStorage.getItem("userInfo")
-  ? JSON.parse(localStorage.getItem("userInfo"))
-  : null;
-
-const initialState = {
-  userLogin: { userInfo: userInfoFromStorage },
-};
-
 const middleware = [thunk];
 
 const store = createStore(
