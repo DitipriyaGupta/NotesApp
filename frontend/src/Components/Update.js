@@ -35,8 +35,8 @@ export default function Update() {
       },
     };
     const fetching = async () => {
-      const baseUrl = "http://localhost:5000";
-      const { data } = await axios.get(baseUrl + `/api/notes/${id}`, config);
+      // const baseUrl = "http://localhost:5000";
+      const { data } = await axios.get( `/api/notes/${id}`, config);
       setTitle(data.title);
       setContent(data.content);
     };
