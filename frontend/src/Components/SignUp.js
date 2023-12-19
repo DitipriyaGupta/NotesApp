@@ -300,7 +300,7 @@ function SignUp() {
                   <Grid item xs>
                     Have an account?
                   </Grid>
-                  <Grid item xs sx={{ marginLeft: -15 }}>
+                  <Grid item xs sx={{ marginLeft: -17 }}>
                     <Link
                       style={{ textDecoration: "none", color: "#4caf50" }}
                       to
