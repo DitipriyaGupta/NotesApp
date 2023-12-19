@@ -15,6 +15,13 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+const theme = createTheme({
+  typography: {
+    fontFamily: ["Plus Jakarta Sans", "sans-serif"].join(","),
+  },
+  
+});
 export default function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -48,7 +55,7 @@ export default function Home() {
   }));
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       {notes.length === 0 ? (
         <>
           {isMobile ? (
@@ -163,6 +170,6 @@ export default function Home() {
           </Container>
         ))
       )}
-    </>
+    </ThemeProvider>
   );
 }
