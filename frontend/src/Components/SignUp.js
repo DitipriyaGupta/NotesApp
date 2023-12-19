@@ -187,7 +187,7 @@ function SignUp() {
                   <Grid item xs sx={{ ml: 4 }}>
                     Have an account?
                   </Grid>
-                  <Grid item xs sx={{ marginLeft: -20 }}>
+                  <Grid item xs sx={{ marginLeft: -21 }}>
                     <Link
                       sx={{ textDecoration: "none", color: "#4caf50" }}
                       to
