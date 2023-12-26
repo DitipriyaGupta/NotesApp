@@ -8,7 +8,7 @@ A personal notes taking app.
 - User can Register and Login
 - User can create and view all the notes
 - User can Update and Delete existing notes
-
+- Ensures a good user experience across a variety of platforms, including desktops, laptops, tablets, and smartphones.
 
 
 ## Screenshots
